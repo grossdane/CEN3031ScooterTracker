@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+
 interface position {
   lat: number
   lng: number
@@ -13,7 +14,7 @@ const props = defineProps<{
   <GMapMap :center="center"
     :zoom="16"
     map-type-id="terrain"
-    style="width: 100vw; height: 20rem"
+    style="width: calc(100vw - 350px); height: 100vh;"
     :options="{
       zoomControl: true,
       mapTypeControl: true,

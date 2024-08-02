@@ -42,11 +42,11 @@ watch(() => props.scooters, fetchAddresses);
 
 <template>
   <div class="tw-text-base tw-font-medium tw-mb-2">Scooters Near You</div>
-  <div class="tw-flex tw-flex-col tw-gap-2">
-    <div class="tw-border"
+  <div class="tw-flex tw-flex-col tw-gap-4">
+    <div class="tw-border tw-rounded-lg"
       v-for="scooter in props.scooters"
       :key="scooter.id">
-      <div class="tw-p-2 tw-border-b tw-flex tw-flex-col tw-justify-between">
+      <div class="tw-p-3 tw-flex tw-flex-col tw-justify-between">
         <div class="tw-text-sm tw-font-bold">Scooter {{ scooter.id }} <span class="tw-text-[12px] tw-font-medium tw-text-gray-500">${{ scooter.price }}/min</span></div>
         <div>Near: {{ addresses[scooter.id] || 'Loading...' }}</div>
         <div>Battery: {{ scooter.battery }}%</div>

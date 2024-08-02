@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import ScooterMap from 'src/components/ScooterMap.vue';
 import ScootersNear from 'src/components/ScootersNear.vue';
+import UserProfile from 'src/components/UserProfile.vue';
 const mapCenter = {
   lat: 29.6465,
   lng: -82.3533
@@ -30,7 +31,7 @@ const scooterLocations = ref([
 </script>
 <template>
   <div class="tw-flex">
-    <div class="tw-min-w-[350px] tw-min-h-screen tw-p-4 tw-shadow-lg">
+    <div class="tw-min-w-[350px] tw-min-h-screen tw-p-4 tw-shadow-lg tw-flex tw-flex-col">
       <!-- Branding -->
       <div class="tw-flex tw-gap-4 tw-items-center tw-mb-8">
         <img src="~assets/logo.png"
@@ -45,6 +46,8 @@ const scooterLocations = ref([
       <h1 class="tw-text-xl tw-font-bold tw-mb-0">Scooter Locations</h1>
       <p class="tw-text-gray-600 tw-mb-4">Click on a scooter to see more information.</p>
       <ScootersNear :scooters="scooterLocations" />
+      <UserProfile class="tw-mt-auto" />
+
     </div>
     <ScooterMap :markers="scooterLocations"
       :center="mapCenter" />
