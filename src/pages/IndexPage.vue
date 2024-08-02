@@ -20,7 +20,10 @@ const scooterLocations = [
 ]
 </script>
 <template>
-  29.648545849384718, -82.34352858059584
+  <div class="tw-w-[400px] tw-min-h-screen">
+    <h1 class="tw-text-2xl tw-font-bold tw-mb-4">Scooter Locations</h1>
+    <p class="tw-text-gray-600 tw-mb-4">Click on a scooter to see more information.</p>
+  </div>
   <ScooterMap :markers="scooterLocations"
     :center="mapCenter" />
 </template>
