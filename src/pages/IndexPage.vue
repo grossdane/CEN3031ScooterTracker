@@ -50,7 +50,7 @@ const scooterLocations = ref([
       <UserProfile class="tw-mt-auto" />
 
     </div>
-    <ScooterMap :markers="scooterLocations"
+    <ScooterMap :scooters="scooterLocations"
       :center="mapCenter" />
     <RentalDialog />
   </div>

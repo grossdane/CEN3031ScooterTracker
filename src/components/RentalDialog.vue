@@ -33,7 +33,9 @@ const onConfirmRental = () => {
       </div>
       <div class="card-body">
         <div class="tw-text-center tw-text-gray-500 tw-mb-2 ">You're requesting to rent scooter </div>
-        <div class="tw-text-4xl tw-text-center tw-mb-2 tw-font-bold">1</div>
+        <div class="tw-text-4xl tw-text-center tw-mb-2 tw-font-bold">
+          {{ route.query?.rent }}
+        </div>
         <div class="tw-text-center tw-text-gray-500">If approved you will be billed at a rate of $0.15/min</div>
         <q-btn label="Request Rental"
           no-caps
