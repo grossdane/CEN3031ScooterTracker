@@ -5,6 +5,7 @@ import axios from 'axios';
 interface Scooter {
   id: number;
   battery: number;
+  price: number;
   position: {
     lat: number;
     lng: number;
@@ -46,7 +47,7 @@ watch(() => props.scooters, fetchAddresses);
       v-for="scooter in props.scooters"
       :key="scooter.id">
       <div class="tw-p-2 tw-border-b tw-flex tw-flex-col tw-justify-between">
-        <div class="tw-text-sm tw-font-bold">Scooter {{ scooter.id }}</div>
+        <div class="tw-text-sm tw-font-bold">Scooter {{ scooter.id }} <span class="tw-text-[12px] tw-font-medium tw-text-gray-500">${{ scooter.price }}/min</span></div>
         <div>Near: {{ addresses[scooter.id] || 'Loading...' }}</div>
         <div>Battery: {{ scooter.battery }}%</div>
       </div>

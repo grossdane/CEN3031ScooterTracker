@@ -10,6 +10,7 @@ const scooterLocations = ref([
   {
     id: 1,
     battery: 100,
+    price: 0.15,
     position: {
       lat: 29.648067984286616,
       lng: -82.34353394501409
@@ -18,6 +19,7 @@ const scooterLocations = ref([
   {
     id: 2,
     battery: 100,
+    price: 0.15,
     position: {
       lat: 29.648545849384718,
       lng: -82.34352858059584
@@ -28,8 +30,19 @@ const scooterLocations = ref([
 </script>
 <template>
   <div class="tw-flex">
-    <div class="tw-min-w-[300px] tw-min-h-screen tw-p-4">
-      <h1 class="tw-text-2xl tw-font-bold tw-mb-2">Scooter Locations</h1>
+    <div class="tw-min-w-[350px] tw-min-h-screen tw-p-4 tw-shadow-lg">
+      <!-- Branding -->
+      <div class="tw-flex tw-gap-4 tw-items-center tw-mb-8">
+        <img src="~assets/logo.png"
+          alt="Scooter Logo"
+          class="tw-w-16  tw-rounded-lg" />
+        <div>
+          <div class="tw-text-base tw-font-medium">Scoot3r</div>
+          <div class="tw-text-xs tw-text-gray-600">👋 Welcome, Ethan Smith</div>
+        </div>
+      </div>
+      <!-- Scooter Locations -->
+      <h1 class="tw-text-xl tw-font-bold tw-mb-0">Scooter Locations</h1>
       <p class="tw-text-gray-600 tw-mb-4">Click on a scooter to see more information.</p>
       <ScootersNear :scooters="scooterLocations" />
     </div>
