@@ -1,8 +1,22 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useQuasar } from 'quasar'
+import { useRoute, useRouter } from 'vue-router';
+const $q = useQuasar()
+
 const route = useRoute();
+const router = useRouter();
 const displayRentDialog = computed(() => Object.keys(route.query).includes('rent'));
+const onConfirmRental = () => {
+  $q.notify({
+    message: 'Your scooter rental request has been sent!',
+    type: 'positive',
+    position: 'top',
+    timeout: 2000
+  })
+
+  router.push('/');
+};
 </script>
 <template>
 
@@ -15,7 +29,7 @@ const displayRentDialog = computed(() => Object.keys(route.query).includes('rent
         </div>
         <q-icon name="close"
           class="tw-cursor-pointer"
-          @click="displayRentDialog = false" />
+          @click="router.push('/')" />
       </div>
       <div class="card-body">
         <div class="tw-text-center tw-text-gray-500 tw-mb-2 ">You're requesting to rent scooter </div>
@@ -23,6 +37,7 @@ const displayRentDialog = computed(() => Object.keys(route.query).includes('rent
         <div class="tw-text-center tw-text-gray-500">If approved you will be billed at a rate of $0.15/min</div>
         <q-btn label="Request Rental"
           no-caps
+          @click="onConfirmRental()"
           class="tw-w-full tw-mt-4"
           color="black" />
       </div>
