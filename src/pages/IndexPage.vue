@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import ScooterMap from 'src/components/ScooterMap.vue';
 import ScootersNear from 'src/components/ScootersNear.vue';
 import UserProfile from 'src/components/UserProfile.vue';
+import RentalDialog from 'src/components/RentalDialog.vue';
 const mapCenter = {
   lat: 29.6465,
   lng: -82.3533
@@ -51,5 +52,6 @@ const scooterLocations = ref([
     </div>
     <ScooterMap :markers="scooterLocations"
       :center="mapCenter" />
+    <RentalDialog />
   </div>
 </template>
