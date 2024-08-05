@@ -1,4 +1,5 @@
 import { route } from 'quasar/wrappers';
+import { useSupabase } from 'src/composables/use-supabase';
 import {
   createMemoryHistory,
   createRouter,
@@ -20,7 +21,9 @@ import routes from './routes';
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
+    : process.env.VUE_ROUTER_MODE === 'history'
+    ? createWebHistory
+    : createWebHashHistory;
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
@@ -30,6 +33,32 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE),
+  });
+  //
+  // Route Middlware
+  //
+
+  Router.beforeEach(async (to, from, next) => {
+    const { supabase } = useSupabase();
+    const { data: auth } = await supabase.auth.getUser();
+
+    // User is logged in
+    if (auth.user) {
+      // If the user is not an admin and tries to access admin routes
+      const { data } = await supabase.from('user_roles').select('*').single();
+      if (to.path.includes('/admin') && data.role !== 'admin') {
+        next('/');
+      } else {
+        next();
+      }
+    } else {
+      // User is not logged in
+      if (to.path.includes('/login') || to.path.includes('/register')) {
+        next();
+      } else {
+        next('/login');
+      }
+    }
   });
 
   return Router;
