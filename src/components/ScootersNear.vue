@@ -9,8 +9,6 @@ const props = defineProps<{
 }>();
 
 const addresses = ref<Record<number, string>>({});
-
-
 const fetchAddresses = async () => {
   if (props.scooters) {
     for (const scooter of props?.scooters) {
