@@ -57,13 +57,12 @@ const columns = [
 </script>
 <template>
   <div>
-    <div class="tw-text-xl tw-font-medium">All Scooters
-      <ag-grid-vue :rowData="data"
-        :columnDefs="columns"
-        style="height: calc(100vh - 200px)"
-        :rowHeight="35"
-        class="ag-theme-quartz">
-      </ag-grid-vue>
-    </div>
+    <div class="tw-text-base tw-font-medium tw-mb-3">All Scooters</div>
+    <ag-grid-vue :rowData="data"
+      :columnDefs="columns"
+      style="height: calc(100vh - 200px)"
+      :rowHeight="35"
+      class="ag-theme-quartz">
+    </ag-grid-vue>
   </div>
 </template>
