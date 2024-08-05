@@ -1,3 +1,4 @@
+// TODO: Move to Supabase types
 export interface Scooter {
   id: number;
   battery: number;
