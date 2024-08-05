@@ -11,8 +11,13 @@ const password = ref('')
 const confirmPassword = ref('')
 const router = useRouter()
 const onSubmit = () => {
-  // Perform registration logic here
+  //
+  // Confirm that all fields are filled in and that the passwords match
+  //
   if (email.value && name.value && password.value && password.value === confirmPassword.value) {
+    //
+    // Register the user with Supabase
+    //
     supabase.auth.signUp({
       email: email.value,
       password: password.value,
