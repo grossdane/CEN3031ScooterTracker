@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, watch } from 'vue';
-import axios from 'axios';
+import { getNearestStreet } from 'src/composables/use-scooter-query';
 import { type Scooter } from 'src/components/types';
 
 
@@ -10,15 +10,6 @@ const props = defineProps<{
 
 const addresses = ref<Record<number, string>>({});
 
-const getNearestStreet = async (lat: number, lng: number) => {
-  try {
-    const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true&key=${process.env.GOOGLE_MAPS_API_KEY}`);
-    return response.data.results[0]?.address_components[0]?.long_name;
-  } catch (error) {
-    console.error('Error fetching address:', error);
-    return 'Unknown';
-  }
-};
 
 const fetchAddresses = async () => {
   if (props.scooters) {

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/vue-query';
 import { useSupabase } from './use-supabase';
-
+import axios from 'axios';
 export const useScooterQuery = () => {
   const { supabase } = useSupabase();
   return useQuery({
@@ -13,4 +13,16 @@ export const useScooterQuery = () => {
       return data;
     },
   });
+};
+
+export const getNearestStreet = async (lat: number, lng: number) => {
+  try {
+    const response = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true&key=${process.env.GOOGLE_MAPS_API_KEY}`
+    );
+    return response.data.results[0]?.address_components[0]?.long_name;
+  } catch (error) {
+    console.error('Error fetching address:', error);
+    return 'Unknown';
+  }
 };
