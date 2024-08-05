@@ -5,7 +5,7 @@ import { type Scooter } from 'src/components/types';
 
 
 const props = defineProps<{
-  scooters: Scooter[];
+  scooters?: Scooter[];
 }>();
 
 const addresses = ref<Record<number, string>>({});
@@ -21,9 +21,11 @@ const getNearestStreet = async (lat: number, lng: number) => {
 };
 
 const fetchAddresses = async () => {
-  for (const scooter of props.scooters) {
-    const address = await getNearestStreet(scooter.lat, scooter.lng);
-    addresses.value[scooter.id] = address;
+  if (props.scooters) {
+    for (const scooter of props?.scooters) {
+      const address = await getNearestStreet(scooter.lat, scooter.lng);
+      addresses.value[scooter.id] = address;
+    }
   }
 };
 
