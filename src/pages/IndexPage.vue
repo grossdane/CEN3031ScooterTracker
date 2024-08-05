@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import ScooterMap from 'src/components/ScooterMap.vue';
 import ScootersNear from 'src/components/ScootersNear.vue';
 import UserProfile from 'src/components/UserProfile.vue';
