@@ -4,6 +4,9 @@ import ScooterMap from 'src/components/ScooterMap.vue';
 import ScootersNear from 'src/components/ScootersNear.vue';
 import UserProfile from 'src/components/UserProfile.vue';
 import RentalDialog from 'src/components/RentalDialog.vue';
+import { useScooterQuery } from 'src/composables/use-scooter-query';
+import { type Scooter } from 'src/components/types';
+const { data } = useScooterQuery();
 const mapCenter = {
   lat: 29.6465,
   lng: -82.3533
@@ -50,7 +53,7 @@ const scooterLocations = ref([
       <UserProfile class="tw-mt-auto" />
 
     </div>
-    <ScooterMap :scooters="scooterLocations"
+    <ScooterMap :scooters="data as Scooter[]"
       :center="mapCenter" />
     <RentalDialog />
   </div>
