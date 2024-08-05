@@ -12,11 +12,11 @@ const columns = [
   {
     field: 'id',
     headerName: 'ID',
-    width: 100,
-  }, {
+    width: 70,
+  },
+  {
     field: 'rented',
     width: 100,
-
     headerName: 'Rented',
   },
   {
@@ -60,7 +60,8 @@ const columns = [
     <div class="tw-text-xl tw-font-medium">All Scooters
       <ag-grid-vue :rowData="data"
         :columnDefs="columns"
-        style="height: 500px"
+        style="height: calc(100vh - 200px)"
+        :rowHeight="35"
         class="ag-theme-quartz">
       </ag-grid-vue>
     </div>
