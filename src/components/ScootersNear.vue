@@ -54,7 +54,7 @@ watch(() => props.scooters, fetchAddresses);
 <style lang="scss" scoped>
 .scooters-near {
   overflow-y: auto;
-  height: calc(100vh - 350px);
+  height: calc(100vh - 250px);
   padding-right: 15px;
   margin-right: -15px;
 }
