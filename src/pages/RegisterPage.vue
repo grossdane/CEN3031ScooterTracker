@@ -33,7 +33,7 @@ const onSubmit = () => {
         position: 'top',
         timeout: 2000
       })
-      router.push('/login')
+      router.push('/')
     }).catch(error => {
       console.error('Registration error:', error)
     })

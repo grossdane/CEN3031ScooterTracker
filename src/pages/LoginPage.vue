@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+import { ref, Ref } from 'vue'
+import { useSupabase } from 'src/composables/use-supabase';
+const { supabase } = useSupabase();
+const email: Ref<string> = ref('');
+const password: Ref<string> = ref('');
+const handleUserLogin = async () => {
+  const user = await supabase.auth.getUser()
+  console.log(user)
+}
+</script>
+
 <template>
   <q-page class="flex flex-center">
     <q-card style="width: 400px">
@@ -11,8 +23,8 @@
       <q-separator />
 
       <q-card-section>
-        <q-form @submit="onSubmit">
-          <q-input v-model="username"
+        <q-form @submit="handleUserLogin">
+          <q-input v-model="email"
             label="Username"
             filled
             :rules="[val => !!val || 'Username is required']"
@@ -39,27 +51,7 @@
   </q-page>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      username: '',
-      password: ''
-    }
-  },
-  methods: {
-    onSubmit() {
-      // Perform login logic here
-      if (this.username && this.password) {
-        console.log('Logging in with', this.username, this.password);
-        // Add your login logic here
-      } else {
-        console.log('Please fill in all fields');
-      }
-    }
-  }
-}
-</script>
+
 
 <style scoped>
 .full-width {
