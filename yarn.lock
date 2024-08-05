@@ -719,6 +719,26 @@ acorn@^8.8.2, acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.12.1.tgz#71616bdccbe25e27a54439e0046e89ca76df2248"
   integrity sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==
 
+ag-charts-types@10.0.2:
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-10.0.2.tgz#fe4d7aa3cdc4ba6f354d7b4bbf65818e242f2fd6"
+  integrity sha512-Nxo5slHOXlaeg0gRIsVnovAosQzzlYfWJtdDy0Aq/VvpJru/PJ+5i2c9aCyEhgRxhBjImsoegwkgRj7gNOWV6Q==
+
+ag-grid-community@32.0.2:
+  version "32.0.2"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-32.0.2.tgz#a69d99ee944fa07ab5faa103f6f930fbd2d4b432"
+  integrity sha512-vLJJUjnsG9hNK41GNuW2EHu1W264kxA/poOpcX4kmyrjU5Uzvelsbj3HdKAO9POV28iqyRdKGYfAWdn8QzA7KA==
+  dependencies:
+    ag-charts-types "10.0.2"
+
+ag-grid-vue3@^32.0.2:
+  version "32.0.2"
+  resolved "https://registry.yarnpkg.com/ag-grid-vue3/-/ag-grid-vue3-32.0.2.tgz#3091a4a0fe0b389e43256e2e78cdc709dab3dc3f"
+  integrity sha512-tFpmDCh3hZVEyu9bsHjgOw4VC5ic4g49s252F2RK17loXfcXnR9e2U0WTAU2laiOqRqJM5iPjf+YauwxU/urgw==
+  dependencies:
+    ag-grid-community "32.0.2"
+    vue "^3.0.0"
+
 ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
@@ -3676,7 +3696,7 @@ vue-tsc@^1.8.22:
     "@vue/language-core" "1.8.27"
     semver "^7.5.4"
 
-vue@^3.4.18:
+vue@^3.0.0, vue@^3.4.18:
   version "3.4.35"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.4.35.tgz#9ad23525919eece40153fdf8675d07ddd879eb33"
   integrity sha512-+fl/GLmI4GPileHftVlCdB7fUL4aziPcqTudpTGXCT8s+iZWuOCeNEB5haX6Uz2IpRrbEXOgIFbe+XciCuGbNQ==
