@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import { useScooterQuery } from 'src/composables/use-scooter-query';
 const { data } = useScooterQuery();
 
@@ -7,28 +6,60 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { AgGridVue } from 'ag-grid-vue3';
 
-const rowData = ref([
-  { make: 'Tesla', model: 'Model Y', price: 64950, electric: true },
-  { make: 'Ford', model: 'F-Series', price: 33850, electric: false },
-  { make: 'Toyota', model: 'Corolla', price: 29600, electric: false },
-]);
 
 // Column Definitions: Defines the columns to be displayed.
-const colDefs = ref([
-  { field: 'make' },
-  { field: 'model' },
-  { field: 'price' },
-  { field: 'electric' }
-]);
+const columns = [
+  {
+    field: 'id',
+    headerName: 'ID',
+    width: 100,
+  }, {
+    field: 'rented',
+    width: 100,
+
+    headerName: 'Rented',
+  },
+  {
+    field: 'battery',
+    headerName: 'Battery',
+    width: 100,
+    valueFormatter: (params: { value: string }) => {
+      return `${params.value}%`
+    }
+
+  },
+  {
+    field: 'price',
+    headerName: 'Price',
+    width: 100,
+    valueFormatter: (params: { value: string }) => {
+      return `$${params.value}`
+    }
+
+  },
+  {
+    field: '',
+    headerName: 'Location',
+    children: [
+      {
+        field: 'lat',
+        headerName: 'Latitude',
+      },
+      {
+        field: 'lng',
+        headerName: 'Longitude',
+      },
+    ]
+  }
+]
 
 
 </script>
 <template>
   <div>
     <div class="tw-text-xl tw-font-medium">All Scooters
-      {{ data }}
-      <ag-grid-vue :rowData="rowData"
-        :columnDefs="colDefs"
+      <ag-grid-vue :rowData="data"
+        :columnDefs="columns"
         style="height: 500px"
         class="ag-theme-quartz">
       </ag-grid-vue>
