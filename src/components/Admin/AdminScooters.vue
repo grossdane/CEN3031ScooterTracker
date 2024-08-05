@@ -2,7 +2,7 @@
 import { useSupabase } from 'src/composables/use-supabase';
 import { useScooterQuery } from 'src/composables/use-scooter-query';
 const { supabase } = useSupabase();
-const { data } = useScooterQuery();
+const { data, isLoading } = useScooterQuery();
 
 
 </script>
@@ -10,6 +10,7 @@ const { data } = useScooterQuery();
   <div>
     <div class="tw-text-xl tw-font-medium">All Scooters
       {{ data }}
+      {{ isLoading }}
     </div>
   </div>
 </template>
