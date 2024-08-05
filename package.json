@@ -16,6 +16,7 @@
     "@fawmi/vue-google-maps": "^0.9.79",
     "@quasar/extras": "^1.16.4",
     "@supabase/supabase-js": "^2.45.0",
+    "@tanstack/vue-query": "^5.51.21",
     "@types/node-geocoder": "^4.2.6",
     "axios": "^1.7.3",
     "dotenv": "^16.4.5",
