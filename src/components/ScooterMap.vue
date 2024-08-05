@@ -11,7 +11,7 @@ interface position {
 
 const props = defineProps<{
   center: position,
-  scooters: Scooter[];
+  scooters?: Scooter[];
 }>()
 </script>
 <template>
