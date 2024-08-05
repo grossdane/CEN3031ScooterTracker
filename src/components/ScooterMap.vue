@@ -1,20 +1,13 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { ref } from 'vue'
+import { type Scooter } from 'src/components/types';
 const displayedMarker = ref<number | null>(null)
 interface position {
   lat: number;
   lng: number;
 }
-interface Scooter {
-  id: number;
-  battery: number;
-  price: number;
-  position: {
-    lat: number;
-    lng: number;
-  };
-}
+
 
 const props = defineProps<{
   center: position,
@@ -36,7 +29,10 @@ const props = defineProps<{
     }">
     <GMapMarker :key="index"
       v-for="(m, index) in props.scooters"
-      :position="m.position"
+      :position="{
+        lat: m.lat,
+        lng: m.lng
+      }"
       :clickable="true"
       @click="displayedMarker = index">
 
