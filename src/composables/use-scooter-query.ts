@@ -6,6 +6,12 @@ export const useScooterQuery = () => {
 
   return useQuery({
     queryKey: ['scooters'],
-    queryFn: async () => await supabase.from('scooters').select('*'),
+    queryFn: async () => {
+      const { data, error } = await supabase.from('scooters').select('*');
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
   });
 };
