@@ -1,16 +1,8 @@
 <script lang="ts" setup>
 import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
+import { type Scooter } from 'src/components/types';
 
-interface Scooter {
-  id: number;
-  battery: number;
-  price: number;
-  position: {
-    lat: number;
-    lng: number;
-  };
-}
 
 const props = defineProps<{
   scooters: Scooter[];
@@ -30,7 +22,7 @@ const getNearestStreet = async (lat: number, lng: number) => {
 
 const fetchAddresses = async () => {
   for (const scooter of props.scooters) {
-    const address = await getNearestStreet(scooter.position.lat, scooter.position.lng);
+    const address = await getNearestStreet(scooter.lat, scooter.lng);
     addresses.value[scooter.id] = address;
   }
 };
