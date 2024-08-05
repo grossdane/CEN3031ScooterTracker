@@ -4,12 +4,16 @@ import ScootersNear from 'src/components/ScootersNear.vue';
 import UserProfile from 'src/components/UserProfile.vue';
 import RentalDialog from 'src/components/RentalDialog.vue';
 import { useScooterQuery } from 'src/composables/use-scooter-query';
+import { useAuthQuery } from 'src/composables/use-auth-query';
 import { type Scooter } from 'src/components/types';
 const { data } = useScooterQuery();
+
+const { data: user } = useAuthQuery();
+
 const mapCenter = {
   lat: 29.6465,
   lng: -82.3533
-}
+};
 
 </script>
 <template>
@@ -22,7 +26,7 @@ const mapCenter = {
           class="tw-w-16  tw-rounded-lg" />
         <div>
           <div class="tw-text-base tw-font-medium">Scoot3r</div>
-          <div class="tw-text-xs tw-text-gray-600">👋 Welcome, Ethan Smith</div>
+          <div class="tw-text-xs tw-text-gray-600">👋 Welcome, {{ user?.user_metadata.name }}</div>
         </div>
       </div>
       <!-- Scooter Locations -->

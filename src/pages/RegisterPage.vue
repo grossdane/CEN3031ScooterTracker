@@ -1,10 +1,55 @@
+<script setup>
+import { ref } from 'vue'
+import { useSupabase } from 'src/composables/use-supabase';
+const { supabase } = useSupabase();
+import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router';
+const $q = useQuasar()
+const email = ref('')
+const name = ref('')
+const password = ref('')
+const confirmPassword = ref('')
+const router = useRouter()
+const onSubmit = () => {
+  //
+  // Confirm that all fields are filled in and that the passwords match
+  //
+  if (email.value && name.value && password.value && password.value === confirmPassword.value) {
+    //
+    // Register the user with Supabase
+    //
+    supabase.auth.signUp({
+      email: email.value,
+      password: password.value,
+      options: {
+        data: {
+          name: name.value
+        }
+      }
+    }).then(() => {
+      $q.notify({
+        message: 'Your account has be registered successfully! ',
+        type: 'positive',
+        position: 'top',
+        timeout: 2000
+      })
+      router.push('/')
+    }).catch(error => {
+      console.error('Registration error:', error)
+    })
+  } else {
+    console.log('Please fill in all fields correctly')
+  }
+}
+</script>
+
 <template>
   <q-page class="flex flex-center">
     <q-card style="width: 500px">
       <q-card-section class="row items-center q-pb-none">
         <div>
           <div class="text-h6">Create Account</div>
-          <div class="text-subtitle2">Register a new account</div>
+          <div class="text-subtitle2 tw-mb-4">Register a new account</div>
         </div>
       </q-card-section>
 
@@ -19,10 +64,10 @@
             :rules="[val => !!val || 'Email is required', val => /.+@.+\..+/.test(val) || 'Email must be valid']"
             class="q-mb-md" />
 
-          <q-input v-model="username"
-            label="Username"
+          <q-input v-model="name"
+            label="Name"
             filled
-            :rules="[val => !!val || 'Username is required']"
+            :rules="[val => !!val || 'Name is required']"
             class="q-mb-md" />
 
           <q-input v-model="password"
@@ -49,24 +94,6 @@
   </q-page>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const email = ref('')
-const username = ref('')
-const password = ref('')
-const confirmPassword = ref('')
-
-const onSubmit = () => {
-  // Perform registration logic here
-  if (email.value && username.value && password.value && password.value === confirmPassword.value) {
-    console.log('Registering with', email.value, username.value, password.value)
-    // Add your registration logic here
-  } else {
-    console.log('Please fill in all fields correctly')
-  }
-}
-</script>
 
 <style scoped>
 .full-width {
