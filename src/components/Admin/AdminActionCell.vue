@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { useUpdateRentalMutation, useGetRentalsQuery } from 'src/composables/use-scooter-query';
 const { mutate: updateRental } = useUpdateRentalMutation();
+import { useQuasar } from 'quasar';
+const $q = useQuasar();
 const { refetch } = useGetRentalsQuery();
 const props = defineProps<{
   params: Record<string, any>;
@@ -9,8 +11,18 @@ console.log(props.params.value)
 const handleUpdateScooter = async (id: string, status: string) => {
   if (status === 'Returned') {
     updateRental({ id: parseInt(id), status, end_time: new Date().toISOString(), scooter_id: props.params.node.data.scooter_id });
+    $q.notify({
+      message: 'Scooter has been marked as returned. Please refresh',
+      color: 'positive',
+      position: 'top'
+    });
   } else {
     updateRental({ id: parseInt(id), status, start_time: new Date().toISOString(), scooter_id: props.params.node.data.scooter_id });
+    $q.notify({
+      message: 'Scooter has been marked as returned. Please refresh',
+      color: 'positive',
+      position: 'top'
+    });
   }
   refetch();
 }
