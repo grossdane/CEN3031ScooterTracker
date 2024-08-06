@@ -48,6 +48,24 @@ export const useCheckoutScooterMutation = () => {
     },
   });
 };
+
+export const useUpdateRentalMutation = () => {
+  const { supabase } = useSupabase();
+  return useMutation({
+    mutationFn: async (params: { id: number; status: string }) => {
+      const { data, error } = await supabase
+        .from('rentals')
+        .update({ status: params.status })
+        .eq('id', params.id)
+        .select();
+
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
 export const getNearestStreet = async (lat: number, lng: number) => {
   try {
     const response = await axios.get(

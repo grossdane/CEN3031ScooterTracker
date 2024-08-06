@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useScooterQuery } from 'src/composables/use-scooter-query';
+import { useScooterQuery, useUpdateRentalMutation } from 'src/composables/use-scooter-query';
 const { data } = useScooterQuery();
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { AgGridVue } from 'ag-grid-vue3';
 
-
+const { mutate: updateRental } = useUpdateRentalMutation();
 // Column Definitions: Defines the columns to be displayed.
 const columns = [
   {
@@ -58,6 +58,7 @@ const columns = [
 <template>
   <div>
     <div class="tw-text-base tw-font-medium tw-mb-3">All Scooters</div>
+    <button @click="updateRental({ id: 4, status: 'yes' })">Update Rental</button>
     <ag-grid-vue :rowData="data"
       :columnDefs="columns"
       style="height: calc(100vh - 200px)"
