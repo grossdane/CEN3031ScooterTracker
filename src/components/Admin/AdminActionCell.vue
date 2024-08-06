@@ -7,7 +7,11 @@ const props = defineProps<{
 }>();
 console.log(props.params.value)
 const handleUpdateScooter = async (id: string, status: string) => {
-  updateRental({ id: parseInt(id), status, start_time: new Date().toISOString(), scooter_id: props.params.node.data.scooter_id });
+  if (status === 'Returned') {
+    updateRental({ id: parseInt(id), status, end_time: new Date().toISOString(), scooter_id: props.params.node.data.scooter_id });
+  } else {
+    updateRental({ id: parseInt(id), status, start_time: new Date().toISOString(), scooter_id: props.params.node.data.scooter_id });
+  }
   refetch();
 }
 </script>
