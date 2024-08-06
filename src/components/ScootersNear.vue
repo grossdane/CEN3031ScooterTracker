@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, watch } from 'vue';
-import { getNearestStreet, useGetRentalsQuery } from 'src/composables/use-scooter-query';
+import { getNearestStreet } from 'src/composables/use-scooter-query';
 import { type Scooter } from 'src/components/types';
 
 
