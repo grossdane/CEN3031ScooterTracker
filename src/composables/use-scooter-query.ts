@@ -76,7 +76,7 @@ export const useUpdateRentalMutation = () => {
         await supabase
           .from('scooters')
           .update({ status: params.status })
-          .eq('id', params.id)
+          .eq('id', params.scooter_id)
           .select();
       }
       const { data, error } = await supabase
