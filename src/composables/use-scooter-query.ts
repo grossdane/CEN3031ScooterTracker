@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/vue-query';
+import { useQuery, useMutation } from '@tanstack/vue-query';
 import { useSupabase } from './use-supabase';
 import axios from 'axios';
 export const useScooterQuery = () => {
@@ -14,7 +14,27 @@ export const useScooterQuery = () => {
     },
   });
 };
+export const useCheckoutScooterMutation = () => {
+  const { supabase } = useSupabase();
+  return useMutation({
+    mutationFn: async (scooterId: number) => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      const { data, error } = await supabase
+        .from('rentals')
+        .insert([
+          { scooter_id: scooterId, user_name: user?.user_metadata.name },
+        ])
+        .select();
 
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
 export const getNearestStreet = async (lat: number, lng: number) => {
   try {
     const response = await axios.get(
