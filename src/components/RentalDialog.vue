@@ -2,21 +2,25 @@
 import { computed } from 'vue';
 import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router';
+import { useCheckoutScooterMutation, useGetRentalsQuery } from 'src/composables/use-scooter-query';
 const $q = useQuasar()
-
 const route = useRoute();
 const router = useRouter();
 const displayRentDialog = computed(() => Object.keys(route.query).includes('rent'));
+const { refetch } = useGetRentalsQuery();
 const onConfirmRental = () => {
+  checkoutScooter(parseInt(route.query?.rent as string));
   $q.notify({
     message: 'Your scooter rental request has been sent!',
     type: 'positive',
     position: 'top',
     timeout: 2000
   })
-
+  refetch();
   router.push('/');
 };
+const { mutate: checkoutScooter } = useCheckoutScooterMutation();
+
 </script>
 <template>
 

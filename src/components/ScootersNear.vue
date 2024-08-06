@@ -31,18 +31,24 @@ watch(() => props.scooters, fetchAddresses);
       <div class="tw-border tw-rounded-lg"
         v-for="scooter in props.scooters"
         :key="scooter.id">
-        <div class="tw-p-3 tw-flex tw-justify-between">
+        <div class="tw-p-3 tw-flex tw-justify-between tw-items-center">
           <div>
             <div class="tw-text-sm tw-font-bold">Scooter {{ scooter.id }} <span class="tw-text-[12px] tw-font-medium tw-text-gray-500">${{ scooter.price }}/min</span></div>
             <div class="tw-text-xs tw-mb-1">📍 {{ addresses[scooter.id] || 'Loading...' }}</div>
             <div class="tw-text-xs">🔋 {{ scooter.battery }}%</div>
           </div>
           <div>
+            <div v-if="scooter.status === 'Approved'"
+              class="tw-text-lg tw-text-green-600 tw-font-bold">
+              Rented</div>
+            <div v-else-if="scooter.status === 'Pending'"
+              class="tw-text-lg tw-text-yellow-600 tw-font-bold">Pending</div>
             <q-btn label="Rent"
+              v-else
               no-caps
               unelevated
               :to="`?rent=${scooter.id}`"
-              class="tw-w-full tw-mt-4"
+              class="tw-w-full"
               color="black" />
           </div>
 
