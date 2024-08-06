@@ -62,14 +62,23 @@ export const useUpdateRentalMutation = () => {
     mutationFn: async (params: {
       id: number;
       status: string;
+      scooter_id: number;
       start_time?: string;
       end_time?: string;
     }) => {
-      await supabase
-        .from('scooters')
-        .update({ status: params.status })
-        .eq('id', params.id)
-        .select();
+      if (params.status === 'Returned' || params.status === 'Rejected') {
+        await supabase
+          .from('scooters')
+          .update({ status: null })
+          .eq('id', params.scooter_id)
+          .select();
+      } else {
+        await supabase
+          .from('scooters')
+          .update({ status: params.status })
+          .eq('id', params.id)
+          .select();
+      }
       const { data, error } = await supabase
         .from('rentals')
         .update({

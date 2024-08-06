@@ -17,7 +17,6 @@ const fetchAddresses = async () => {
     }
   }
 };
-const { data } = useGetRentalsQuery();
 
 onMounted(fetchAddresses);
 
@@ -39,11 +38,11 @@ watch(() => props.scooters, fetchAddresses);
             <div class="tw-text-xs">🔋 {{ scooter.battery }}%</div>
           </div>
           <div>
-            <div v-if="data?.find(rental => rental.scooter_id === scooter.id).status === 'Approved'"
-              class="tw-text-lg tw-text-green-600 tw-font-bold">Rented</div>
-            <div v-if="data?.find(rental => rental.scooter_id === scooter.id).status === 'Pending'"
+            <div v-if="scooter.status === 'Approved'"
+              class="tw-text-lg tw-text-green-600 tw-font-bold">
+              Rented</div>
+            <div v-else-if="scooter.status === 'Pending'"
               class="tw-text-lg tw-text-yellow-600 tw-font-bold">Pending</div>
-
             <q-btn label="Rent"
               v-else
               no-caps

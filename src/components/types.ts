@@ -5,4 +5,5 @@ export interface Scooter {
   price: number;
   lat: number;
   lng: number;
+  status: string;
 }
