@@ -14,6 +14,19 @@ export const useScooterQuery = () => {
     },
   });
 };
+export const useGetRentalsQuery = () => {
+  const { supabase } = useSupabase();
+  return useQuery({
+    queryKey: ['rentals'],
+    queryFn: async () => {
+      const { data, error } = await supabase.from('rentals').select('*');
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
 export const useCheckoutScooterMutation = () => {
   const { supabase } = useSupabase();
   return useMutation({
