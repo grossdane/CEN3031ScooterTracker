@@ -34,6 +34,13 @@ export const useCheckoutScooterMutation = () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
+
+      await supabase
+        .from('scooters')
+        .update({ status: 'Pending' })
+        .eq('id', scooterId)
+        .select();
+
       const { data, error } = await supabase
         .from('rentals')
         .insert([
@@ -58,6 +65,11 @@ export const useUpdateRentalMutation = () => {
       start_time?: string;
       end_time?: string;
     }) => {
+      await supabase
+        .from('scooters')
+        .update({ status: params.status })
+        .eq('id', params.id)
+        .select();
       const { data, error } = await supabase
         .from('rentals')
         .update({
