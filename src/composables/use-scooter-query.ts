@@ -52,10 +52,19 @@ export const useCheckoutScooterMutation = () => {
 export const useUpdateRentalMutation = () => {
   const { supabase } = useSupabase();
   return useMutation({
-    mutationFn: async (params: { id: number; status: string }) => {
+    mutationFn: async (params: {
+      id: number;
+      status: string;
+      start_time?: string;
+      end_time?: string;
+    }) => {
       const { data, error } = await supabase
         .from('rentals')
-        .update({ status: params.status })
+        .update({
+          status: params.status,
+          start_time: params.start_time,
+          end_time: params.end_time,
+        })
         .eq('id', params.id)
         .select();
 
