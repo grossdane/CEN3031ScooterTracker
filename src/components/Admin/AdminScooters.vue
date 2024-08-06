@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import { useScooterQuery } from 'src/composables/use-scooter-query';
 const { data } = useScooterQuery();
-
+import { computed } from 'vue';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { AgGridVue } from 'ag-grid-vue3';
 
+const tableData = computed(() => {
+  return data.value;
+})
 // Column Definitions: Defines the columns to be displayed.
 const columns = [
   {
@@ -56,7 +59,7 @@ const columns = [
 <template>
   <div>
     <div class="tw-text-lg tw-font-medium tw-mb-3">All Scooters</div>
-    <ag-grid-vue :rowData="data"
+    <ag-grid-vue :rowData="tableData"
       :columnDefs="columns"
       style="height: calc(100vh - 200px)"
       :rowHeight="35"
