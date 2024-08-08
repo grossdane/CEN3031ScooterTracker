@@ -42,7 +42,7 @@ watch(() => props.scooters, fetchAddresses);
               class="tw-text-lg tw-text-green-600 tw-font-bold">
               Rented</div>
             <div v-else-if="scooter.status === 'Pending'"
-              class="tw-text-lg tw-text-yellow-600 tw-font-bold">Pending</div>
+              class="tw-text-xs tw-text-yellow-600 tw-font-bold">Rental Pending</div>
             <q-btn label="Rent"
               v-else
               no-caps
